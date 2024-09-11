@@ -38,7 +38,18 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-     return expr.split(' ').map(morse => MORSE_TABLE[morse] || '').join('');
+     let decodedString = '';
+    const words = expr.split('   '); 
+
+    words.forEach(word => {
+        const letters = word.split(' ');
+        letters.forEach(letter => {
+            decodedString += MORSE_TABLE[letter] || '';
+        });
+        decodedString += ' '; 
+    });
+
+    return decodedString.trim();
 }
 
 module.exports = {
